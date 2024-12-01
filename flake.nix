@@ -14,8 +14,7 @@
                     python313
                     uv
                 ];
-                shellHook = ''
-                '';
+                shellHook = "zsh";
             };
         }
     );
