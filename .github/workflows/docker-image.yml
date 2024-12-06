@@ -25,7 +25,7 @@ jobs:
     # Run the Docker container
     - name: Start Docker container
       run: |
-        docker-compose up
+        docker run -d --rm -p 8080:8080 --name backend-container backend:latest
 
     # Wait for the application to be ready
     - name: Wait for application to start
