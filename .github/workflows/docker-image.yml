@@ -25,7 +25,7 @@ jobs:
     # Run the Docker container
     - name: Start Docker container
       run: |
-        docker run -d --rm -p 8080:8080 --name backend-container backend:latest
+        docker run -d --rm -p 8080:8080 --name backend-container ghcr.io/${{ github.repository }}/backend:${{ github.sha }}
 
     # Wait for the application to be ready
     - name: Wait for application to start
