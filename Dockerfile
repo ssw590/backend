@@ -10,4 +10,4 @@ RUN uv sync --frozen
 
 CMD ["uv", "run", "prod"]
 
-EXPOSE 8080
+EXPOSE 5000

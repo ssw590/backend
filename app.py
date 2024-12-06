@@ -24,9 +24,10 @@ def search():
     conn: sqlite3.Connection = g.db
     cursor = conn.cursor()
 
-    search_term = request.args.get("search")
+    search_term = request.args.get("search", None)
 
-    print(search_term)
+    if search_term is None:
+        return "Working"
 
     # sql injection
     queryString = f"SELECT name, price FROM items WHERE name LIKE '%{search_term}%' AND released = 1;"
@@ -46,8 +47,8 @@ def close_db(error):  # type: ignore
 def run_prod():
     from waitress import serve
 
-    serve(app, port=8080)
+    serve(app, port=5000, url_prefix="/backend")
 
 
 if __name__ == "__main__":
-    app.run(port=8080)
+    app.run(port=5000)
