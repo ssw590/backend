@@ -16,13 +16,21 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
+    # Step 1.5: Zap scan
+    - name: ZAP Full Scan
+      uses: zaproxy/action-full-scan@v0.12.0
+      with:
+        target: 'http://localhost:8080'
+        fail_action: true
+        allow_issue_writing: false
+
     # Step 2: Log in to GitHub Container Registry
     - name: Log in to GitHub Container Registry
       uses: docker/login-action@v2
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ secrets.PAT}}
+        password: ${{ secrets.PAT }}
 
     # Step 3: Build the Docker image
     - name: Build Docker image
