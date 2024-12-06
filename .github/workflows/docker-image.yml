@@ -31,7 +31,7 @@ jobs:
     - name: Wait for application to start
       run: |
         for i in {1..30}; do
-          if curl -s http://localhost:8080 > /dev/null; then
+          if curl -s http://localhost:8080/backend > /dev/null; then
             echo "Application is up!"
             break
           fi
@@ -43,7 +43,7 @@ jobs:
     - name: ZAP Full Scan
       uses: zaproxy/action-full-scan@v0.12.0
       with:
-        target: 'http://localhost:8080'
+        target: 'http://localhost:8080/backend'
         fail_action: true
         allow_issue_writing: false
 
